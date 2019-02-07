@@ -40,6 +40,6 @@ RUN mv /tmp/apache-ant-1.10.5-bin /opt/ant
 RUN ln -s /opt/ant/bin/ant /usr/bin/ant
 
 # Add environment variables
-ADD ant.sh /etc/profile.d/ant.sh
-RUN chmod +x /etc/profile.d/ant.sh
+ADD env.sh /etc/profile.d/env.sh
+RUN chmod +x /etc/profile.d/env.sh
 
