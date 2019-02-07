@@ -27,7 +27,19 @@ RUN chown -R ${user}:${user} /home/${user}
 # Add the jenkins user to sudoers
 RUN echo "${user}    ALL=(ALL)    ALL" >> etc/sudoers
 
+# Install Maven
 RUN wget http://mirror.metrocast.net/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp
-RUN tar xvf /tmp/apache-maven-3.6.0-bin.tar.gz -C /opt
-RUN export PATH=$PATH:/opt/apache-maven-3.6.0-bin/bin
+RUN tar xvf /tmp/apache-maven-3.6.0-bin.tar.gz
+RUN mv /tmp/apache-maven-3.6.0-bin /opt/maven
+
+# Install Ant
+
+RUN wget http://mirror.metrocast.net/apache//ant/binaries/apache-ant-1.10.5-bin.tar.gz -P /tmp
+RUN tar xvf /tmp/apache-ant-1.10.5-bin.tar.gz
+RUN mv /tmp/apache-ant-1.10.5-bin /opt/ant
+RUN ln -s /opt/ant/bin/ant /usr/bin/ant
+
+# Add environment variables
+ADD ant.sh /etc/profile.d/ant.sh
+RUN chmod +x /etc/profile.d/ant.sh
 
