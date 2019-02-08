@@ -28,7 +28,7 @@ RUN echo "${user}    ALL=(ALL)    ALL" >> etc/sudoers
 
 # Install Oracle JDK
 RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm -P /tmp
-RUN yum localinstall /tmp/jdk-8u201-linux-x64.rpm
+RUN yum localinstall -y /tmp/jdk-8u201-linux-x64.rpm
 RUN rm -f /tmp/jdk-8u201-linux-x64.rpm
 
 # Add environment variables
