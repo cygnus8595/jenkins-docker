@@ -7,7 +7,6 @@ RUN yum update -y && \
 # Install Packages
 RUN yum install -y git && \
     yum install -y wget && \
-	yum install -y java-1.8.0-openjdk && \
 	yum install -y sudo && \
     yum install -y unzip && \
 	yum clean all
@@ -27,6 +26,11 @@ RUN chown -R ${user}:${user} /home/${user}
 
 # Add the jenkins user to sudoers
 RUN echo "${user}    ALL=(ALL)    ALL" >> etc/sudoers
+
+# Install Oracle JDK
+RUN wget --header "Cookie: oraclelicense=accept-securebackup-cookie" https://download.oracle.com/otn-pub/java/jdk/8u201-b09/42970487e3af4f5aa5bca3f542482c60/jdk-8u201-linux-x64.rpm -P /tmp
+RUN yum localinstall -y /tmp/jdk-8u201-linux-x64.rpm
+RUN rm -f /tmp/jdk-8u201-linux-x64.rpm
 
 # Install Maven
 RUN wget http://mirror.metrocast.net/apache/maven/maven-3/3.6.0/binaries/apache-maven-3.6.0-bin.tar.gz -P /tmp
