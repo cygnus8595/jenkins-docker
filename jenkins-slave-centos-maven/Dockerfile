@@ -61,3 +61,7 @@ RUN mkdir -p /usr/local/lib/nodejs && tar -xJvf /tmp/node-v10.15.1-linux-x64.tar
 ADD env.sh /etc/profile.d/env.sh
 RUN chmod +x /etc/profile.d/env.sh
 
+# Install some Node packages with npm
+
+RUN npm install -g bower jspm grunt-cli gulp
+
