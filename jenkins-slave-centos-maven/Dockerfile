@@ -63,5 +63,5 @@ RUN chmod +x /etc/profile.d/env.sh
 
 # Install some Node packages with npm
 
-RUN npm install -g bower jspm grunt-cli gulp
+RUN /usr/local/lib/nodejs/node-v10.15.1-linux-x64/bin/npm install -g bower jspm grunt-cli gulp
 
