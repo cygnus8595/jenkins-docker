@@ -37,6 +37,21 @@ RUN wget http://mirror.metrocast.net/apache//ant/binaries/apache-ant-1.10.5-bin.
 RUN tar xvf /tmp/apache-ant-1.10.5-bin.tar.gz -C /tmp && mv /tmp/apache-ant-1.10.5 /opt/ant
 RUN ln -s /opt/ant/bin/ant /usr/bin/ant
 
+# Install Gradle
+
+RUN mkdir -p /opt/gradle && wget https://downloads.gradle.org/distributions/gradle-5.2.1-bin.zip -P /tmp
+RUN unzip -d /opt/gradle /tmp/gradle-5.2.1-bin.zip
+
+# Install Groovy
+
+RUN wget https://bintray.com/artifact/download/groovy/maven/apache-groovy-binary-2.5.6.zip -P /tmp
+RUN mkdir -p /opt/groovy && unzip -d /opt/groovy /tmp/apache-groovy-binary-2.5.6.zip
+
+# Install NodeJS
+
+RUN wget https://nodejs.org/dist/v10.15.1/node-v10.15.1-linux-x64.tar.xz -P /tmp
+RUN mkdir -p /usr/local/lib/nodejs && tar -xJvf /tmp/node-v10.15.1-linux-x64.tar.xz -C /usr/local/lib/nodejs
+
 # Add environment variables
 ADD env.sh /etc/profile.d/env.sh
 RUN chmod +x /etc/profile.d/env.sh
