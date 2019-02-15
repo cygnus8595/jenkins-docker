@@ -57,6 +57,11 @@ RUN mkdir -p /opt/groovy && unzip -d /opt/groovy /tmp/apache-groovy-binary-2.5.6
 RUN wget https://nodejs.org/dist/v10.15.1/node-v10.15.1-linux-x64.tar.xz -P /tmp
 RUN mkdir -p /usr/local/lib/nodejs && tar -xJvf /tmp/node-v10.15.1-linux-x64.tar.xz -C /usr/local/lib/nodejs
 
+# Install Sonarqube Scanner
+
+RUN wget https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/sonar-scanner-cli-3.3.0.1492-linux.zip -P /tmp
+RUN mkdir -p /opt/sonarscanner && unzip -d /opt/sonarscanner /tmp/sonar-scanner-cli-3.3.0.1492-linux.zip
+
 # Add environment variables
 ADD env.sh /etc/profile.d/env.sh
 RUN chmod +x /etc/profile.d/env.sh
